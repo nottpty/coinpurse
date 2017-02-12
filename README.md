@@ -4,7 +4,7 @@ A coin purse contains coins. You can insert coins, withdraw money, check the bal
 
 ### How to run
 
-You can run the program by click Main.java
+You can run the program by Main.java
 
 ### Example of program
 
