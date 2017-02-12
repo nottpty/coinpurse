@@ -36,11 +36,7 @@ public class Purse {
      * @return the number of coins in the purse
      */
     public int count() { 
-    	int temp = 0;
-    	for(Coin c :money){
-    		++temp;
-    	}
-    	return temp;
+    	return money.size();
     }
     
     /** 
@@ -49,9 +45,8 @@ public class Purse {
      */
     public double getBalance() {
     	double balance = 0;
-    	for(Coin c: money){
+    	for(Coin c: money)
     		balance += c.getValue();
-    	}
     	return balance;
     }
 
@@ -60,7 +55,9 @@ public class Purse {
      * Return the capacity of the coin purse.
      * @return the capacity
      */
-    public int getCapacity() { return capacity; }
+    public int getCapacity() { 
+    	return capacity; 
+    }
     
     /** 
      *  Test whether the purse is full.

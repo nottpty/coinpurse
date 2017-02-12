@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 /**
  * Some Coin utility methods for practice using Lists and Comparator.
+ * @author Patinya Yongyai
  */
 public class CoinUtil{
 
@@ -31,37 +32,19 @@ public class CoinUtil{
 	 * Method to sort a list of coins by currency.
 	 * On return, the list (coins) will be ordered by currency.
 	 * @param coins is a List of Coin objects we want to sort. 
-	 *
-	 * TODO:
-	 * 1. Write a Comparator<Coin> (you can write the class at the end of this file.
-	 *    Declare it as "class CompareByCurrency" without the "public").
-	 *    You can also write Comparator as an anonymous class, if you know how.
-	 *    The compare method should order coins by currency.
-	 * 2. Create a comparator instance and use it to sort the coins.
 	 */
 	public static void sortByCurrency(List<Coin> coins) {
 		class CompareByCurrency implements Comparator<Coin> {
-
 			@Override
 			public int compare(Coin coin1, Coin coin2) {
 				return coin1.getCurrency().compareTo(coin2.getCurrency());
-			}
-			
+			}	
 		}
 		Collections.sort(coins, new CompareByCurrency());
 	}
 	
 	/**
 	 * Sum coins by currency and print the sum for each currency.
-	 * Print one line for the sum of each currency.
-	 * For example: 
-	 * coins = { Coin(1,"Baht"), Coin(20,"Ringgit"), Coin(10,"Baht"), Coin(0.5,"Ringgit") }
-	 * then sumByCurrency(coins) would print:
-	 * 
-	 * 11.00 Baht
-	 * 20.50 Ringgit
-	 * 
-	 * Hint: this is easy if you sort the coins by currency first. :-)
 	 */
 	public static void sumByCurrency(List<Coin> coins) {
 		sortByCurrency(coins);
