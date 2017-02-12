@@ -100,9 +100,9 @@ public class Purse {
 		if ( amount > 0 ) {		
 			List<Coin> tempList;
 			List<Coin> tempIndex;
+			Collections.sort(money);
+			Collections.reverse(money);
 			for(int i = 0 ; i<count() ; i++){
-				Collections.sort(money);
-				Collections.reverse(money);
 				double temp = 0;
 				tempList = new ArrayList<Coin>();
 				tempIndex = new ArrayList<Coin>();
