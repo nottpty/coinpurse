@@ -8,7 +8,7 @@ You can run the program by click Main.java
 
 ### Example of program
 
-'''
+```
 Purse contains 0.00 Baht
 
 Please enter d (deposit), w (withdraw), ? (inquiry), or q (quit): d
@@ -30,4 +30,4 @@ Purse contains 5.00 Baht
 
 Please enter d (deposit), w (withdraw), ? (inquiry), or q (quit): q
 Goodbye. The purse still has 5.0 Baht
-'''
+```
