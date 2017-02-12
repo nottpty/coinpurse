@@ -1,4 +1,4 @@
-# Coin Purse by Patinya Yongyai
+# Coin Purse
 
 A coin purse contains coins. You can insert coins, withdraw money, check the balance, and check if the purse is full. When you withdraw money, the coin purse decides which coins to remove.
 
@@ -31,3 +31,6 @@ Purse contains 5.00 Baht
 Please enter d (deposit), w (withdraw), ? (inquiry), or q (quit): q
 Goodbye. The purse still has 5.0 Baht
 ```
+
+## Author
+* **Patinya Yongyai**
