@@ -52,11 +52,19 @@ public class ConsoleDialog {
         String inline = console.nextLine();
         // parse input line into numbers
         Scanner scanline = new Scanner(inline);
+        boolean ok;
         while( scanline.hasNextDouble() ) {
             double value = scanline.nextDouble();
-            Coin coin = new Coin(value);
-            System.out.printf("Deposit %s... ", coin.toString() );
-            boolean ok = purse.insert(coin);
+            if(value >= 20){
+            	BankNote banknote = new BankNote(value);
+            	System.out.printf("Deposit %s... ", banknote.toString() );
+                ok = purse.insert(banknote);
+            }
+            else{
+            	Coin coin = new Coin(value);
+                System.out.printf("Deposit %s... ", coin.toString() );
+                ok = purse.insert(coin);
+            }
             System.out.println( (ok? "ok" : "FAILED") );
         }
         if ( scanline.hasNext() )
@@ -70,13 +78,13 @@ public class ConsoleDialog {
         System.out.print("How much to withdraw? ");
         if ( console.hasNextDouble() ) {
              double amount = console.nextDouble( );
-             Coin [] coins = purse.withdraw(amount);
-             if ( coins == null ) 
+             Valuable [] valuables = purse.withdraw(amount);
+             if ( valuables == null ) 
                 System.out.printf("Sorry, couldn't withdraw %g %s\n", amount, CURRENCY);
              else {
                 System.out.print("You withdrew:");
-                for(int k=0; k<coins.length; k++) {
-                	System.out.print(" " + coins[k].toString() );
+                for(int k=0; k<valuables.length; k++) {
+                	System.out.print(" " + valuables[k].toString() );
                 }
                 System.out.println();
             }

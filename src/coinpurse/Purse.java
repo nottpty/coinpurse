@@ -2,38 +2,39 @@ package coinpurse;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
- *  A coin purse contains coins.
- *  You can insert coins, withdraw money, check the balance,
+ *  A coin purse contains coins, bank notes, coupons.
+ *  You can insert coins, bank notes or coupons, withdraw money, check the balance,
  *  and check if the purse is full.
  *  When you withdraw money, the coin purse decides which
- *  coins to remove.
+ *  valuables to remove.
  *  
  *  @author Patinya Yongyai
  */
-public class Purse {
+public class Purse{
     /** Collection of objects in the purse. */
-    private List<Coin> money;
-    /** Capacity is maximum number of coins the purse can hold.
+    private List<Valuable> money;
+    /** Capacity is maximum number of valuables the purse can hold.
      *  Capacity is set when the purse is created and cannot be changed.
      */
     private final int capacity;
     
     /** 
      *  Create a purse with a specified capacity.
-     *  @param capacity is maximum number of coins you can put in purse.
+     *  @param capacity is maximum number of valuables you can put in purse.
      */
     public Purse( int capacity ) {
     	this.capacity = capacity;
-    	money = new ArrayList<Coin>();
+    	money = new ArrayList<Valuable>();
     }
 
     /**
-     * Count and return the number of coins in the purse.
-     * This is the number of coins, not their value.
-     * @return the number of coins in the purse
+     * Count and return the number of valuables in the purse.
+     * This is the number of valuables, not their value.
+     * @return the number of valuables in the purse
      */
     public int count() { 
     	return money.size();
@@ -45,8 +46,8 @@ public class Purse {
      */
     public double getBalance() {
     	double balance = 0;
-    	for(Coin c: money)
-    		balance += c.getValue();
+    	for(Valuable v: money)
+    		balance += v.getValue();
     	return balance;
     }
 
@@ -72,15 +73,16 @@ public class Purse {
     }
 
     /** 
-     * Insert a coin into the purse.
-     * The coin is only inserted if the purse has space for it
-     * and the coin has positive value.  No worthless coins!
-     * @param coin is a Coin object to insert into purse
-     * @return true if coin inserted, false if can't insert
+     * Insert a valuable into the purse.
+     * The valuable is only inserted if the purse has space for it
+     * and the valuable has positive value.  No worthless valuable!
+     * @param valuable is a Valuable object to insert into purse
+     * @return true if valuable inserted, false if can't insert
      */
-    public boolean insert( Coin coin ) {
-    	if( !isFull() && coin.getValue() > 0 ){
-    		money.add(coin);
+    public boolean insert( Valuable valuable ) {
+    	if( !isFull() && valuable.getValue() > 0 ){
+    		money.add(valuable);
+    		Collections.reverse(money);
     		return true;
     	}
         return false;
@@ -88,24 +90,23 @@ public class Purse {
     
     /**  
      *  Withdraw the requested amount of money.
-     *  Return an array of Coins withdrawn from purse,
+     *  Return an array of Valuable withdrawn from purse,
      *  or return null if cannot withdraw the amount requested.
      *  @param amount is the amount to withdraw
-     *  @return array of Coin objects for money withdrawn, 
+     *  @return array of Valuable objects for money withdrawn, 
 	 *    or null if cannot withdraw requested amount.
      */
-    public Coin[] withdraw( double amount ) {
+    public Valuable[] withdraw( double amount ) {
         if(amount < 0) 
         	return null;
 		if ( amount > 0 ) {		
-			List<Coin> tempList;
-			List<Coin> tempIndex;
-			Collections.sort(money);
-			Collections.reverse(money);
+			List<Valuable> tempList;
+			List<Valuable> tempIndex;
+			double temp;
 			for(int i = 0 ; i<count() ; i++){
-				double temp = 0;
-				tempList = new ArrayList<Coin>();
-				tempIndex = new ArrayList<Coin>();
+				temp = 0;
+				tempList = new ArrayList<Valuable>();
+				tempIndex = new ArrayList<Valuable>();
 				for(int j = i ; j<count() ; j++){
 					if(temp+money.get(j).getValue() <= amount){
 						temp += money.get(j).getValue();
@@ -113,7 +114,7 @@ public class Purse {
 						tempIndex.add(money.get(j));
 					}
 					if(temp == amount){
-						Coin[] array = new Coin[tempList.size()];
+						Valuable[] array = new Valuable[tempList.size()];
 						for(int k = 0 ; k < tempIndex.size() ; k++)
 							money.remove(tempIndex.get(k));
 						return tempList.toArray(array);
@@ -129,7 +130,7 @@ public class Purse {
      * It can return whatever is a useful description.
      */
     public String toString() {
-    	return this.count()+" coins with value "+this.getBalance();
+    	return this.count()+" valuable with value "+this.getBalance();
     }
 
 }

@@ -38,30 +38,30 @@ public class PurseTest {
 
     
 
-    /** Insert some coins. Easy test. */
+    /** Insert some valuables. Easy test. */
     @Test
     public void testInsert()
     {
         Purse purse = new Purse(3);
-        Coin coin1 = new Coin(5);
-        Coin coin2 = new Coin(10);
-        Coin coin3 = new Coin(1);
-        assertTrue( purse.insert(coin1));
-        assertTrue( purse.insert(coin3));
-        assertTrue( purse.insert(coin2));
+        Valuable valuable1 = new Coin(5);
+        Valuable valuable2 = new Coin(10);
+        Valuable valuable3 = new Coin(1);
+        assertTrue( purse.insert(valuable1));
+        assertTrue( purse.insert(valuable3));
+        assertTrue( purse.insert(valuable2));
         assertEquals( 3, purse.count() );
         // purse is full so insert should fail
         assertFalse( purse.insert(new Coin(1)) );
     }
     
 
-    /** Insert should reject coin with no value. */
+    /** Insert should reject valuable with no value. */
     @Test
     public void testInsertNoValue()
     {
         Purse purse = new Purse(3);
-        Coin fakeCoin = new Coin(0);
-        assertFalse( purse.insert(fakeCoin));
+        Valuable fakeValuable = new Coin(0);
+        assertFalse( purse.insert(fakeValuable));
     }
 
 
@@ -84,14 +84,14 @@ public class PurseTest {
         assertFalse( purse.insert( new Coin(5) ) );
     }
 
-	/** Should be able to insert same coin many times,
+	/** Should be able to insert same valuable many times,
 	 *  since spec doesn't say anything about this.
 	 */
 	@Test
 	public void testInsertSameCoin()
 	{
 		Purse purse = new Purse(5);
-		Coin coin = new Coin(10);
+		Valuable coin = new Coin(10);
 		assertTrue( purse.insert(coin) );
 		assertTrue( purse.insert(coin) ); // should be allowed
 		assertTrue( purse.insert(coin) ); // should be allowed
@@ -102,13 +102,13 @@ public class PurseTest {
 		Purse purse = new Purse(10);
 		int [] values = {1, 10, 1000};
 		for(int value : values) {
-			Coin coin = new Coin(value);
-			assertTrue(purse.insert(coin));
+			Valuable valuable = new Coin(value);
+			assertTrue(purse.insert(valuable));
 			assertEquals(value,  purse.getBalance(), TOL);
-			Coin [] result = purse.withdraw(value);
+			Valuable [] result = purse.withdraw(value);
 			assertTrue( result != null );
 			assertEquals( 1, result.length );
-			assertSame(  coin, result[0] );
+			assertSame(  valuable, result[0] );
 			assertEquals( 0, purse.getBalance(), TOL );
 		}
 	}
@@ -129,10 +129,10 @@ public class PurseTest {
 		}
 		assertEquals(amount1+amount2, purse.getBalance(), TOL );
 		assertEquals(10, purse.count() );
-		Coin [] wd1 = purse.withdraw(amount1);
+		Valuable [] wd1 = purse.withdraw(amount1);
 		assertEquals(amount1, sumValue(wd1), TOL );
 		assertEquals(amount2, purse.getBalance(), TOL );
-		Coin [] wd2 = purse.withdraw(amount2);
+		Valuable [] wd2 = purse.withdraw(amount2);
 		assertEquals(0, purse.getBalance(), TOL );
 	}
 
@@ -149,14 +149,14 @@ public class PurseTest {
 	}
 	
 	/**
-	 * Sum the value of some coins.
-	 * @param coins array of coins
-	 * @return sum of values of the coins
+	 * Sum the value of some Valuables.
+	 * @param valuables array of valuables
+	 * @return sum of values of the valuables
 	 */
-	private double sumValue(Coin [] coins)  {
-		if (coins == null) return 0;
+	private double sumValue(Valuable [] valuables)  {
+		if (valuables == null) return 0;
 		double sum = 0;
-		for(Coin c: coins) if (c != null) sum += c.getValue();
+		for(Valuable c: valuables) if (c != null) sum += c.getValue();
 		return sum;
 	}
 }

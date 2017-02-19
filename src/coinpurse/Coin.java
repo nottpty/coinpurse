@@ -1,10 +1,11 @@
 package coinpurse;
 
+
 /**
  * a coin with a monetary value and currency
  * @author Patinya Yongyai
  */
-public class Coin implements Comparable<Coin>{
+public class Coin implements Valuable{
 	public static final String DEFAULT_CURRENCY = "Baht";
     /** Value of the coin. */
     private final double value;
@@ -60,21 +61,7 @@ public class Coin implements Comparable<Coin>{
     	return false;
 
     }
-    
-    /**
-     * Check value of two coins.
-     * @param c is coin that want to compare with this coin
-     * @return 1 if value of this coin more than value of c, return 0 if value of this coin
-     * equal with value coin c, return -1 if value of this coin less than value of coin c
-     */
-    @Override
-    public int compareTo(Coin c) {
-    	if(this.value > c.value) return 1;
-    	if(this.value == c.value) return 0;
-    	if(this.value < c.value) return -1;
-    	return 0;
-    }
-    
+
     /**
      * Show value and currency of coin.
      */
