@@ -71,7 +71,7 @@ public class BankNote implements Valuable{
 	}
 	
 	/**
-     * Show value and currency of coin.
+     * Show value, currency and serial number of BankNote.
      */
 	public String toString(){
 		return this.value+"-"+this.currency+" note ["+this.serialNumber+"]";

@@ -61,7 +61,7 @@ public class Coupon implements Valuable{
 	}
 	
 	/**
-     * Show value and currency of coupon.
+     * Show value, currency and color of coupon.
      */
 	public String toString(){
 		return this.value+"-"+this.currency+" coupon ["+this.color+"]";
