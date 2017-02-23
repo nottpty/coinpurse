@@ -5,7 +5,7 @@ package coinpurse;
  * 
  * @author Patinya Yongyai
  */
-public class Coupon implements Valuable {
+public class Coupon implements Comparable<Valuable>, Valuable {
 	private final String color;
 	private final String currency;
 	private final double value;
@@ -63,9 +63,29 @@ public class Coupon implements Valuable {
 		if (obj.getClass() != this.getClass())
 			return false;
 		Coupon other = (Coupon) obj;
-		if (other.value != this.value && other.currency != this.currency)
-			return false;
-		return true;
+		if (other.value == this.value && other.currency.equals(this.currency))
+			return true;
+		return false;
+	}
+
+	/**
+	 * Check value of two valuables.
+	 * 
+	 * @param v
+	 *            is other valuable that want to compare with this valuable
+	 * @return 1 if value of this valuable more than value of v, return 0 if value
+	 *         of this valuable equal with value valuable v, return -1 if value of this
+	 *         valuable less than value of valuable v.
+	 */
+	@Override
+	public int compareTo(Valuable v) {
+		if (this.value > v.getValue())
+			return 1;
+		if (this.value == v.getValue())
+			return 0;
+		if (this.value < v.getValue())
+			return -1;
+		return 0;
 	}
 
 	/**

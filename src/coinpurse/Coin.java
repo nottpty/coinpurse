@@ -5,7 +5,7 @@ package coinpurse;
  * 
  * @author Patinya Yongyai
  */
-public class Coin implements Valuable {
+public class Coin implements Comparable<Valuable>, Valuable {
 	public static final String DEFAULT_CURRENCY = "Baht";
 	/** Value of the coin. */
 	private final double value;
@@ -64,10 +64,29 @@ public class Coin implements Valuable {
 		if (obj.getClass() != this.getClass())
 			return false;
 		Coin other = (Coin) obj;
-		if (value == other.value && currency == other.currency)
+		if (value == other.value && currency.equals(other.currency))
 			return true;
 		return false;
+	}
 
+	/**
+	 * Check value of two valuables.
+	 * 
+	 * @param v
+	 *            is other valuable that want to compare with this valuable
+	 * @return 1 if value of this valuable more than value of v, return 0 if value
+	 *         of this valuable equal with value valuable v, return -1 if value of this
+	 *         valuable less than value of valuable v.
+	 */
+	@Override
+	public int compareTo(Valuable v) {
+		if (this.value > v.getValue())
+			return 1;
+		if (this.value == v.getValue())
+			return 0;
+		if (this.value < v.getValue())
+			return -1;
+		return 0;
 	}
 
 	/**
