@@ -5,10 +5,8 @@ package coinpurse;
  * 
  * @author Patinya Yongyai
  */
-public class Coupon implements Comparable<Valuable>, Valuable {
+public class Coupon extends AbstractValuable {
 	private final String color;
-	private final String currency;
-	private final double value;
 
 	/**
 	 * A coupon with given value and currency.
@@ -21,9 +19,8 @@ public class Coupon implements Comparable<Valuable>, Valuable {
 	 *            is the color of coupon.
 	 */
 	public Coupon(double value, String currency, String color) {
+		super(value, currency);
 		this.color = color;
-		this.currency = currency;
-		this.value = value;
 	}
 
 	/**
@@ -50,32 +47,13 @@ public class Coupon implements Comparable<Valuable>, Valuable {
 	}
 
 	/**
-	 * Check two coupons are equal if they have the same value and currency.
-	 * 
-	 * @param obj
-	 *            is coupon that want to compare with this coupon.
-	 * @return true if two coupons are equal, return false if two coupon aren't
-	 *         equal.
-	 */
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (obj.getClass() != this.getClass())
-			return false;
-		Coupon other = (Coupon) obj;
-		if (other.value == this.value && other.currency.equals(this.currency))
-			return true;
-		return false;
-	}
-
-	/**
 	 * Check value of two valuables.
 	 * 
 	 * @param v
 	 *            is other valuable that want to compare with this valuable
-	 * @return 1 if value of this valuable more than value of v, return 0 if value
-	 *         of this valuable equal with value valuable v, return -1 if value of this
-	 *         valuable less than value of valuable v.
+	 * @return 1 if value of this valuable more than value of v, return 0 if
+	 *         value of this valuable equal with value valuable v, return -1 if
+	 *         value of this valuable less than value of valuable v.
 	 */
 	@Override
 	public int compareTo(Valuable v) {

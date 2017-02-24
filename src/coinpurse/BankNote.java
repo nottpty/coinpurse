@@ -5,20 +5,16 @@ package coinpurse;
  * 
  * @author Patinya Yongyai
  */
-public class BankNote implements Comparable<Valuable>, Valuable {
+public class BankNote extends AbstractValuable {
 	private static long nextSerialNumber = 1000000;
-	public static final String DEFAULT_CURRENCY = "Baht";
-	private final String currency;
 	private final long serialNumber;
-	private final double value;
 
 	/**
 	 * A BankNote with given value using the default currency.
 	 */
 	public BankNote(double value) {
-		this.value = value;
+		super(value);
 		this.serialNumber = nextSerialNumber;
-		this.currency = DEFAULT_CURRENCY;
 	}
 
 	/**
@@ -30,8 +26,7 @@ public class BankNote implements Comparable<Valuable>, Valuable {
 	 *            is the currency of BankNote.
 	 */
 	public BankNote(double value, String currency) {
-		this.value = value;
-		this.currency = currency;
+		super(value, currency);
 		this.serialNumber = nextSerialNumber;
 	}
 
@@ -59,32 +54,13 @@ public class BankNote implements Comparable<Valuable>, Valuable {
 	}
 
 	/**
-	 * Check two BankNotes are equal if they have the same value and currency.
-	 * 
-	 * @param obj
-	 *            is other BankNote that want to compare with this BankNote.
-	 * @return true if two BankNotes are equal, return false if two BankNotes
-	 *         aren't equal.
-	 */
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (obj.getClass() != this.getClass())
-			return false;
-		BankNote other = (BankNote) obj;
-		if (other.currency.equals(this.currency) && other.value == this.value)
-			return true;
-		return false;
-	}
-
-	/**
 	 * Check value of two valuables.
 	 * 
 	 * @param v
 	 *            is other valuable that want to compare with this valuable
-	 * @return 1 if value of this valuable more than value of v, return 0 if value
-	 *         of this valuable equal with value valuable v, return -1 if value of this
-	 *         valuable less than value of valuable v.
+	 * @return 1 if value of this valuable more than value of v, return 0 if
+	 *         value of this valuable equal with value valuable v, return -1 if
+	 *         value of this valuable less than value of valuable v.
 	 */
 	@Override
 	public int compareTo(Valuable v) {
