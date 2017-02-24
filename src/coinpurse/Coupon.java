@@ -24,46 +24,10 @@ public class Coupon extends AbstractValuable {
 	}
 
 	/**
-	 * @return value of coupon
-	 */
-	@Override
-	public double getValue() {
-		return this.value;
-	}
-
-	/**
-	 * @return currency of coupon
-	 */
-	@Override
-	public String getCurrency() {
-		return this.currency;
-	}
-
-	/**
 	 * @return the color of coupon
 	 */
 	public String getColor() {
 		return this.color;
-	}
-
-	/**
-	 * Check value of two valuables.
-	 * 
-	 * @param v
-	 *            is other valuable that want to compare with this valuable
-	 * @return 1 if value of this valuable more than value of v, return 0 if
-	 *         value of this valuable equal with value valuable v, return -1 if
-	 *         value of this valuable less than value of valuable v.
-	 */
-	@Override
-	public int compareTo(Valuable v) {
-		if (this.value > v.getValue())
-			return 1;
-		if (this.value == v.getValue())
-			return 0;
-		if (this.value < v.getValue())
-			return -1;
-		return 0;
 	}
 
 	/**

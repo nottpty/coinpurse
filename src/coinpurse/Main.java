@@ -6,7 +6,7 @@ package coinpurse;
  * @author Patinya Yongyai
  */
 public class Main {
-	private static int CAPACITY = 10;
+	private static int CAPACITY = 3;
 
     /**
      * Configure and start the application.
