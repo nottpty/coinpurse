@@ -17,14 +17,12 @@ public class MalaiMoneyFactory extends MoneyFactory {
 	 */
 	@Override
 	Valuable createMoney(double value) {
-		Valuable valuable = null;
 		if (value == 0.05 || value == 0.10 || value == 0.20 || value == 0.50)
-			valuable = new Coin(value * 100, "Sen");
+			return new Coin(value * 100, "Sen");
 		else if (value == 1 || value == 2 || value == 5 || value == 10 || value == 20 || value == 50 || value == 100)
-			valuable = new BankNote(value, "Ringgit", ++nextSerialNumber);
+			return new BankNote(value, "Ringgit", ++nextSerialNumber);
 		else
 			throw new IllegalArgumentException();
-		return valuable;
 	}
 
 }

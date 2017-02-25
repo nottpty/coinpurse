@@ -33,7 +33,7 @@ public class Coin extends AbstractValuable {
 	 * Show value and currency of coin.
 	 */
 	public String toString() {
-		return value + "-" + currency;
+		return value + "-" + currency + " coin";
 	}
 
 }

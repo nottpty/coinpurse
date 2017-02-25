@@ -17,16 +17,14 @@ public class ThaiMoneyFactory extends MoneyFactory {
 	 */
 	@Override
 	Valuable createMoney(double value) {
-		Valuable valuable = null;
 		if (value == 1 || value == 2 || value == 5 || value == 10)
-			valuable = new Coin(value);
+			return new Coin(value);
 		else if (value < 1)
-			valuable = new Coin(value, "Satang");
+			return new Coin(value, "Satang");
 		else if (value == 20 || value == 50 || value == 100 || value == 500 || value == 1000)
-			valuable = new BankNote(value, ++nextSerialNumber);
+			return new BankNote(value, ++nextSerialNumber);
 		else
 			throw new IllegalArgumentException();
-		return valuable;
 	}
 
 }

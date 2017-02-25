@@ -64,4 +64,11 @@ public abstract class MoneyFactory {
 		factory = newFactory;
 	}
 
+	/**
+	 * @return current money factory
+	 */
+	MoneyFactory getMoneyFactory() {
+		return this;
+	}
+
 }

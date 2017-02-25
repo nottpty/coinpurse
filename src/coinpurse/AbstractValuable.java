@@ -11,9 +11,9 @@ package coinpurse;
 public class AbstractValuable implements Valuable {
 	/** The default of currency. */
 	public static final String DEFAULT_CURRENCY = "Baht";
-	/** Value of the coin. */
+	/** Value of the valuable. */
 	double value;
-	/** The currency, of course. */
+	/** The currency of valuable. */
 	String currency;
 
 	/**
@@ -42,16 +42,16 @@ public class AbstractValuable implements Valuable {
 	 * 
 	 * @param obj
 	 *            is other valuable that want to compare with this valuable.
-	 * @return true if two valuables are equal, return false if two valuables aren't
-	 *         equal.
+	 * @return true if two valuables are equal, return false if two valuables
+	 *         aren't equal.
 	 */
 	public boolean equals(Object obj) {
 		if (obj == null)
 			return false;
 		if (obj.getClass() != this.getClass())
 			return false;
-		Coin other = (Coin) obj;
-		if (value == other.value && currency.equals(other.currency))
+		Valuable other = (Valuable) obj;
+		if (value == other.getValue() && currency.equals(other.getCurrency()))
 			return true;
 		return false;
 	}
