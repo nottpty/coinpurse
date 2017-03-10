@@ -109,22 +109,19 @@ public class Purse {
 			return null;
 		if (amount > 0) {
 			List<Valuable> tempList;
-			List<Valuable> tempIndex;
 			double temp;
 			for (int i = 0; i < count(); i++) {
 				temp = 0;
 				tempList = new ArrayList<Valuable>();
-				tempIndex = new ArrayList<Valuable>();
 				for (int j = i; j < count(); j++) {
 					if (temp + money.get(j).getValue() <= amount) {
 						temp += money.get(j).getValue();
 						tempList.add(money.get(j));
-						tempIndex.add(money.get(j));
 					}
 					if (temp == amount) {
 						Valuable[] array = new Valuable[tempList.size()];
-						for (int k = 0; k < tempIndex.size(); k++)
-							money.remove(tempIndex.get(k));
+						for (int k = 0; k < tempList.size(); k++)
+							money.remove(tempList.get(k));
 						return tempList.toArray(array);
 					}
 				}
