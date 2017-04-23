@@ -6,7 +6,7 @@ package coinpurse;
  * @author Patinya Yongyai
  *
  */
-public class MalaiMoneyFactory extends MoneyFactory {
+public class MalayMoneyFactory extends MoneyFactory {
 	private static long nextSerialNumber = 1000000;
 
 	/**

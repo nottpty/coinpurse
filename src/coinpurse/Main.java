@@ -19,20 +19,14 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Purse purse = new Purse(CAPACITY);
-		ResourceBundle bundle = ResourceBundle.getBundle("coinpurse");
-		String factoryclass = bundle.getString("moneyfactory");
-		MoneyFactory instance = null;
-		MoneyFactory.setMoneyFactory(new ThaiMoneyFactory());
-		try {
-			instance = (MoneyFactory) Class.forName(factoryclass).newInstance();
-		} catch (ClassCastException cce) {
-			System.out.println(factoryclass + " is not type MoneyFactory");
-		} catch (Exception ex) {
-			System.out.println("Error creating Moneyfactory " + ex.getMessage());
-		}
-		if (instance == null)
-			System.exit(1);
+		MoneyFactory.setMoneyFactory(new MalayMoneyFactory());
 		ConsoleDialog ui = new ConsoleDialog(purse);
+		PurseBalanceObserver balanceObserver = new PurseBalanceObserver();
+		PurseStatusObserver statusObserver = new PurseStatusObserver();
+		purse.addObserver(balanceObserver);
+		purse.addObserver(statusObserver);
+		balanceObserver.run();
+		statusObserver.run();
 		ui.run();
 	}
 }
