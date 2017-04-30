@@ -10,18 +10,30 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * GUI for show status of purse.
+ * 
+ * @author Patinya Yongyai
+ *
+ */
 public class PurseStatusObserver extends JFrame implements Observer{
 
 	private static final int FONT_SIZE = 30;
 	private JTextArea textarea;
 	private JProgressBar progressBar;
 	
+	/**
+	 * Constructor for initialize GUI.
+	 */
 	public PurseStatusObserver() {
 		this.setTitle("Purse Status");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 	
+	/**
+	 * Create components of GUI.
+	 */
 	public void initComponents() {
 		textarea = new JTextArea(2,10);
 		textarea.setEditable(false);
@@ -37,6 +49,9 @@ public class PurseStatusObserver extends JFrame implements Observer{
 		this.pack();
 	}
 
+	/**
+	 * Update UI when 
+	 */
 	@Override
 	public void update(Observable subject, Object info) {
 		if (info != null) textarea.setText(info+"\n");
@@ -55,6 +70,9 @@ public class PurseStatusObserver extends JFrame implements Observer{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

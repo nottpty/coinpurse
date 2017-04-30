@@ -8,6 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * 
+ * 
+ * @author Patinya Yongyai
+ *
+ */
 public class PurseBalanceObserver extends JFrame implements Observer{
 	private static final int FONT_SIZE = 30;
 	private JTextArea textarea;

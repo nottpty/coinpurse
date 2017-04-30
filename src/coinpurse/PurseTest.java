@@ -6,6 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import coinpurse.strategy.GreedyWithdraw;
+import coinpurse.strategy.RecursiveWithdraw;
+
 /**
  * Test the Purse.
  * This is a JUnit 4 test.  
@@ -100,6 +103,7 @@ public class PurseTest {
 	@Test
 	public void testEasyWithdraw() {
 		Purse purse = new Purse(10);
+		purse.setWithdrawStrategy(new RecursiveWithdraw());
 		int [] values = {1, 10, 1000};
 		for(int value : values) {
 			Valuable valuable = new Coin(value);
@@ -116,6 +120,7 @@ public class PurseTest {
 	@Test
 	public void testMultiWithdraw() {
 		Purse purse = new Purse(10);
+		purse.setWithdrawStrategy(new RecursiveWithdraw());
 		int value = 1;
 		double amount1 = 0;
 		double amount2 = 0;
@@ -139,6 +144,7 @@ public class PurseTest {
 	@Test
 	public void testImpossibleWithdraw() {
 		Purse purse = new Purse(10);
+		purse.setWithdrawStrategy(new RecursiveWithdraw());
 		assertNull( purse.withdraw(1) );
 		purse.insert( new Coin(20) );
 		assertNull( purse.withdraw(1) );

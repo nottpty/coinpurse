@@ -1,6 +1,6 @@
 package coinpurse;
 
-import java.util.ResourceBundle;
+import coinpurse.strategy.RecursiveWithdraw;
 
 /**
  * A main class to create objects and connect objects together. The user
@@ -19,7 +19,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Purse purse = new Purse(CAPACITY);
-		MoneyFactory.setMoneyFactory(new MalayMoneyFactory());
+		purse.setWithdrawStrategy(new RecursiveWithdraw());
+		MoneyFactory.setMoneyFactory(new ThaiMoneyFactory());
 		ConsoleDialog ui = new ConsoleDialog(purse);
 		PurseBalanceObserver balanceObserver = new PurseBalanceObserver();
 		PurseStatusObserver statusObserver = new PurseStatusObserver();
