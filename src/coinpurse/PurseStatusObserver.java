@@ -11,7 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- * GUI for show status of purse.
+ * GUI for showing a status of purse.
  * 
  * @author Patinya Yongyai
  *
@@ -32,7 +32,7 @@ public class PurseStatusObserver extends JFrame implements Observer{
 	}
 	
 	/**
-	 * Create components of GUI.
+	 * Initialize all components of GUI.
 	 */
 	public void initComponents() {
 		textarea = new JTextArea(2,10);
@@ -50,7 +50,7 @@ public class PurseStatusObserver extends JFrame implements Observer{
 	}
 
 	/**
-	 * Update UI when 
+	 * Update UI when purse was updated.
 	 */
 	@Override
 	public void update(Observable subject, Object info) {
@@ -71,7 +71,7 @@ public class PurseStatusObserver extends JFrame implements Observer{
 	}
 	
 	/**
-	 * 
+	 * To enable GUI of this frame.
 	 */
 	public void run() {
 		this.setVisible(true);

@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- * 
+ * GUI for showing a balance of purse.
  * 
  * @author Patinya Yongyai
  *
@@ -18,12 +18,18 @@ public class PurseBalanceObserver extends JFrame implements Observer{
 	private static final int FONT_SIZE = 30;
 	private JTextArea textarea;
 	
+	/**
+	 * Constructor for initialize GUI
+	 */
 	public PurseBalanceObserver() {
 		this.setTitle("Purse Balance");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 	
+	/**
+	 * Initial all components in GUI
+	 */
 	public void initComponents() {
 		textarea = new JTextArea(2,10);
 		textarea.setEditable(false);
@@ -35,6 +41,9 @@ public class PurseBalanceObserver extends JFrame implements Observer{
 		this.pack();
 	}
 
+	/**
+	 * Update UI when balance in a purse was updated.
+	 */
 	@Override
 	public void update(Observable subject, Object info) {
 		if (info != null) textarea.setText(info+"\n");
@@ -45,6 +54,9 @@ public class PurseBalanceObserver extends JFrame implements Observer{
 		}
 	}
 	
+	/**
+	 * To enable GUI of this frame.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

@@ -1,7 +1,7 @@
 package coinpurse;
 
 /**
- * a coupon with a monetary value, currency and color
+ * A coupon with a monetary value, currency and color.
  * 
  * @author Patinya Yongyai
  */
