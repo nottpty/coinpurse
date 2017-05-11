@@ -1,56 +1,50 @@
-package coinpurse;
+package coinpurse.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
-import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import coinpurse.Purse;
+
 /**
- * GUI for showing a status of purse.
+ * GUI for showing a balance of purse.
  * 
  * @author Patinya Yongyai
  *
  */
-public class PurseStatusObserver extends JFrame implements Observer{
-
+public class PurseBalanceObserver extends JFrame implements Observer{
 	private static final int FONT_SIZE = 30;
 	private JTextArea textarea;
-	private JProgressBar progressBar;
 	
 	/**
-	 * Constructor for initialize GUI.
+	 * Constructor for initialize GUI
 	 */
-	public PurseStatusObserver() {
-		this.setTitle("Purse Status");
+	public PurseBalanceObserver() {
+		this.setTitle("Purse Balance");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 	
 	/**
-	 * Initialize all components of GUI.
+	 * Initial all components in GUI
 	 */
 	public void initComponents() {
 		textarea = new JTextArea(2,10);
 		textarea.setEditable(false);
 		textarea.setFont( new Font(Font.DIALOG, Font.PLAIN, FONT_SIZE) );
 		
-		this.setLayout(new BorderLayout());
-		progressBar = new JProgressBar();
-		progressBar.setMinimum(0);
 		JScrollPane scrollpane = new JScrollPane( textarea );
 		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		this.add(scrollpane, BorderLayout.NORTH);
-		this.add(progressBar, BorderLayout.SOUTH);
+		this.add(scrollpane);
 		this.pack();
 	}
 
 	/**
-	 * Update UI when purse was updated.
+	 * Update UI when balance in a purse was updated.
 	 */
 	@Override
 	public void update(Observable subject, Object info) {
@@ -58,15 +52,7 @@ public class PurseStatusObserver extends JFrame implements Observer{
 		
 		if (subject instanceof Purse) {
 			Purse purse = (Purse)subject;
-			progressBar.setMaximum(purse.getCapacity());
-			if( purse.isFull() && purse.count() != 0 ){
-				textarea.setText("FULL");
-			} else if(purse.count() != 0) {
-				textarea.setText(purse.count()+"/"+purse.getCapacity());
-			} else {
-				textarea.setText("EMPTY");
-			}
-			progressBar.setValue(purse.count());
+			textarea.setText(purse.getBalance()+" "+"Baht"+"\n");
 		}
 	}
 	

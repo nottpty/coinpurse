@@ -1,5 +1,7 @@
 package coinpurse;
 
+import coinpurse.gui.PurseBalanceObserver;
+import coinpurse.gui.PurseStatusObserver;
 import coinpurse.strategy.RecursiveWithdraw;
 
 /**
