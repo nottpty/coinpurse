@@ -26,5 +26,13 @@ public class ThaiMoneyFactory extends MoneyFactory {
 		else
 			throw new IllegalArgumentException();
 	}
+	
+	/**
+	 * Get next serial number for a bank note.
+	 * @return next serial number for a bank note.
+	 */
+	public long getNextSerialNumber() {
+		return nextSerialNumber;
+	}
 
 }

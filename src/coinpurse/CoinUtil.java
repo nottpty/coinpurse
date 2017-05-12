@@ -1,7 +1,7 @@
 package coinpurse;
 
 import java.util.*;
-import java.util.stream.Collector;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -15,6 +15,8 @@ public class CoinUtil {
 	 * Method that examines all the valuables in a List and returns only the
 	 * valuables that have a currency that matches the parameter value.
 	 * 
+	 * @param <E>
+	 * 
 	 * @param valuablelist
 	 *            is a List of valuable objects. This list is not modified.
 	 * @param currency
@@ -22,13 +24,12 @@ public class CoinUtil {
 	 * @return a new List containing only the elements from valuablelist that
 	 *         have the requested currency.
 	 */
-	public static List<Valuable> filterByCurrency(final List<Valuable> valuablelist, String currency) {
-		List<Valuable> tempList = new ArrayList<Valuable>();
-		for (Valuable c : valuablelist) {
-			if (c.getCurrency().equals(currency))
-				tempList.add(c);
+	public static <E extends Valuable> List<E> filterByCurrency(final List<E> valuablelist, String currency) {
+		if (currency == null) {
+			throw new IllegalArgumentException();
 		}
-		return tempList;
+		Predicate<E> predicated = (s) -> s.getCurrency().equals(currency);
+		return valuablelist.stream().filter(predicated).collect(Collectors.toList());
 	}
 
 	/**
@@ -38,14 +39,14 @@ public class CoinUtil {
 	 * @param valuables
 	 *            is a List of Valuable objects we want to sort.
 	 */
-	public static void sortByCurrency(List<Valuable> valuables) {
+	public static void sortByCurrency(List<? extends Valuable> money) {
 		class CompareByCurrency implements Comparator<Valuable> {
 			@Override
 			public int compare(Valuable valuable1, Valuable valuable2) {
 				return valuable1.getCurrency().compareTo(valuable2.getCurrency());
 			}
 		}
-		Collections.sort(valuables, new CompareByCurrency());
+		Collections.sort(money, new CompareByCurrency());
 	}
 
 	/**
@@ -129,6 +130,21 @@ public class CoinUtil {
 
 		}
 		System.out.println(); // end the line
+	}
+
+	/**
+	 * Return the larger of a  and b, according to the natural
+	 * ordering (defined by compareTo).
+	 */
+	public static <E extends Comparable<? super E>> E max(E ... a) {
+		E max = null;
+		for (int i = 0 ; i < a.length ; i++)
+			if (i == 0) {
+				max = a[i];
+			if (a[i].compareTo(max) > 0) 
+				max = a[i];
+		}
+		return max;
 	}
 
 }
